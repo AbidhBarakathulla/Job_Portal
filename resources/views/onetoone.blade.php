@@ -21,15 +21,17 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($candidates as $candidate)
                 <tr>
-                    <td>{{ $candidates->username }}</td>
-                    <td>{{ $candidates->email }}</td>
-                    <td>{{$candidates->profile->gender}}</td>
-                    <td>{{$candidates->profile->phone_number}}</td>
-                    <td>{{$candidates->profile->age}}</td>
+                    <td>{{$candidate->username }}</td>
+                    <td>{{$candidate->email }}</td>
+                    <td>{{$candidate->profile->gender}}</td>
+                    <td>{{$candidate->profile->phone_number}}</td>
+                    <td>{{$candidate->profile->age}}</td>
                 </tr>
-        </tbody>
+                @endforeach
+                    </tbody>
     </table>
 </body>
 
-</html>
+</html> 

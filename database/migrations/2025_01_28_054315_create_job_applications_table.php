@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('candidateprofiles', function (Blueprint $table) {
+        Schema::create('job_applications', function (Blueprint $table) {
             $table->id();
-
+            $table->integer('job_id');
+            $table->integer('candidate_id');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('candidateprofiles');
+        Schema::dropIfExists('job_applications');
     }
 };
