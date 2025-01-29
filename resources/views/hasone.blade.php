@@ -8,30 +8,24 @@
 
 </head>
 <body>
-<h3 style="text-align: center;">many to many relationship</h3>
-<table class="table table-hover">
-  
-        @foreach ($candidates as $candidate)
-        <tr>
-        <td>Candidate name:{{ $candidate->username }}</td>
-        </tr>
-        <tr class="table-success">
+<h3 style="text-align: center;">Has one Through relationship</h3>
+<table class="table table-hover container">
+<tr class="table-success">
             <th>Candidate Name</th>
             <th>Candidate Email</th>
-            <th>Job Title</th>
-            <th>Application Status</th>
-            <th>Created At</th>
+            <th>Employee Name</th>
+            <th>Employee Email</th>
+            <th>Employee Position</th>
         </tr>
-            @foreach ($candidate->jobApplications as $jobapplication)
+  
+        @foreach ($candidates as $candidate)
                 <tr>
                     <td>{{ $candidate->username }}</td>
                     <td>{{ $candidate->email }}</td>
-                    <td>{{ $jobapplication->jobLists->title }}</td>
-                    <td>{{ $jobapplication->status }}</td>
-                    <td>{{ $jobapplication->created_at }}</td>
-
+                    <td>{{ $candidate->employee->emp_name }}</td>
+                    <td>{{ $candidate->employee->email }}</td>
+                    <td>{{ $candidate->employee->position }}</td>
                 </tr>
-            @endforeach
         @endforeach
 </table>
 </body>

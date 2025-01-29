@@ -10,7 +10,10 @@
     <h3 style="text-align: center;">Eloquent Relationship</h3>
     <a href="/onetoone" class="btn btn-warning m-3">One To One</a><br>
     <a href="/onetomany" class="btn btn-warning m-3">One To Many</a><br>
-    <a href="/manytomany" class="btn btn-warning m-3">Many To Many</a>
-
+    <a href="/manytomany" class="btn btn-warning m-3">Many To Many</a><br>
+    <a href="/hasone" class="btn btn-warning m-3">Has One Through</a><br>
+    <a href="/hasmany" class="btn btn-warning m-3">Has Many Through</a><br>
+    <a href="/polymorphic_one" class="btn btn-warning m-3">Polymorphic One To One</a><br>
+    <a href="/polymorphic_onetomany" class="btn btn-warning m-3">Polymorphic One To Many</a><br>
 </body>
 </html>     

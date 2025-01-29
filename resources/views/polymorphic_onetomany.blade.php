@@ -8,26 +8,24 @@
 
 </head>
 <body>
-<h3 style="text-align: center;">One to many relationship</h3>
+<h3 style="text-align: center;">Polymorphic One to many relationship</h3>
 <table class="table table-hover container">
 
-        @foreach ($employees as $employee)
+        @foreach ($candidates as $candidate)
         <tr>
-        <td>Employee: {{ $employee->emp_name }}</td>
+        <td>Candidate: {{ $candidate->username }}</td>
         </tr>
         <tr class="table-success">
-            <th>Employee Name</th>
+            <th>Name</th>
             <th>Employee position</th>
             <th>created Job</th>
-            <th>created At</th>
         </tr>
-            @foreach ($employee->jobApplications as $jobapplication)
+            @foreach ($candidate->resumes as $resumes)
        
                 <tr>
-                    <td>{{ $employee->emp_name }}</td>
-                    <td>{{ $employee->position }}</td>
-                    <td>{{  $jobapplication->title }}</td>
-                    <td>{{  $jobapplication->created_at }}</td>
+                    <td>{{ $candidate->username  }}</td>
+                    <td>{{ $resumes->image }}</td>
+                    <td>{{  $resumes->resume }}</td>
 
                 </tr>
             @endforeach

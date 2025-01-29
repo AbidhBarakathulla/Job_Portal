@@ -15,21 +15,21 @@
             <tr class="table-success">
                 <th>Username</th>
                 <th>Email</th>
-                <th>gender</th>
-                <th>Phone No</th>
-                <th>age</th>
+                <th>Resume</th>
+                <th>Image</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($candidates as $candidate)
-                <tr>
-                    <td>{{$candidate->username }}</td>
-                    <td>{{$candidate->email }}</td>
-                    <td>{{$candidate->profile->gender}}</td>
-                    <td>{{$candidate->profile->phone_number}}</td>
-                    <td>{{$candidate->profile->age}}</td>
-                </tr>
-                @endforeach
+        @foreach($candidates as $candidate)
+    <tr>
+        <td>{{ $candidate->username }}</td>
+        <td>{{ $candidate->email }}</td>
+        <td>{{ $candidate->resume->resume ?? '' }}</td>
+        <td>{{ $candidate->resume->image ?? '' }}</td>
+    </tr>
+@endforeach
+
+
                     </tbody>
     </table>
 </body>

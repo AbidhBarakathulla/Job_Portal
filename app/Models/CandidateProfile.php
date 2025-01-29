@@ -13,4 +13,5 @@ class CandidateProfile extends Model
     {
         return $this->belongsTo(Candidate::class, 'candidate_id');
     }
+
 }

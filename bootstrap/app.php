@@ -11,8 +11,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'checkAge' => \App\Http\Middleware\CheckAge::class,
+        ]);
+            $middleware->validateCsrfTokens(
+                except: ['stripe/*', 'login']
+                );
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+       
     })->create();
+        // other middleware...
+       
