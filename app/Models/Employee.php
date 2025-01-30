@@ -9,5 +9,5 @@ class Employee extends Model
    public function jobApplications()
     {
         return $this->hasMany(JobApplication::class, 'emp_id');  
-      }
+      } //one to many relationship with jobapplication
 }

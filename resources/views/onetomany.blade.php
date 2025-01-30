@@ -13,11 +13,10 @@
 
         @foreach ($employees as $employee)
         <tr>
-        <td>Employee: {{ $employee->emp_name }}</td>
+        <td>Employee: {{ $employee->emp_name }} Position : {{ $employee->position }}</td>
         </tr>
         <tr class="table-success">
             <th>Employee Name</th>
-            <th>Employee position</th>
             <th>created Job</th>
             <th>created At</th>
         </tr>
@@ -25,8 +24,7 @@
        
                 <tr>
                     <td>{{ $employee->emp_name }}</td>
-                    <td>{{ $employee->position }}</td>
-                    <td>{{  $jobapplication->title }}</td>
+                    <td>{{  $jobapplication->jobLists->title}}</td>
                     <td>{{  $jobapplication->created_at }}</td>
 
                 </tr>

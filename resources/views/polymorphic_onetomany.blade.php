@@ -17,8 +17,8 @@
         </tr>
         <tr class="table-success">
             <th>Name</th>
-            <th>Employee position</th>
-            <th>created Job</th>
+            <th>Image</th>
+            <th>Resume</th>
         </tr>
             @foreach ($candidate->resumes as $resumes)
        

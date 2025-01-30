@@ -11,13 +11,13 @@ class Candidate extends Model
 
     public function profile()
     {
-        return $this->hasOne(CandidateProfile::class,'candidate_id');
-    }
-   
+        return $this->hasOne(CandidateProfile::class, 'candidate_id');
+    } // one to one relationship with candidate profile
+
     public function jobApplications()
     {
         return $this->belongsToMany(JobApplication::class, 'candidate_job_application', 'candidate_id', 'job_application_id');
-    }
+    } //many to many relationship with jobapplication
     public function employee()
     {
         return $this->hasOneThrough(
@@ -28,18 +28,18 @@ class Candidate extends Model
             'id',                    // Local key on the candidates table
             'emp_id'                 // Local key on the job_application table
         );
-    } 
-    public function jobLists()
-{
-    return $this->hasManyThrough(JobList::class, JobApplication::class, 'candidate_id', 'id', 'id', 'job_id');
-}
-public function resume()
-{
-    return $this->morphOne(CandidateResume::class, 'candidateable');
-}
-public function resumes()
-{
-    return $this->morphMany(CandidateResume::class, 'candidateable');
-}
+    } // has one through relationship with employee
 
+    public function jobLists()
+    {
+        return $this->hasManyThrough(JobList::class, JobApplication::class, 'candidate_id', 'id', 'id', 'job_id');
+    } // has many through with job list
+    public function resume()
+    {
+        return $this->morphOne(CandidateResume::class, 'candidateable');
+    } //polymorphic one to one relationship with candidate resume
+    public function resumes()
+    {
+        return $this->morphMany(CandidateResume::class, 'candidateable');
+    } // polymorphic one to many relationship with candidate resume
 }

@@ -13,11 +13,11 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'checkAge' => \App\Http\Middleware\CheckAge::class,
-        ]);
+        ]); // custom middleware register
             $middleware->validateCsrfTokens(
                 except: ['stripe/*', 'login']
-                );
-    })
+                ); // validate login form with csrf token
+    }) 
     ->withExceptions(function (Exceptions $exceptions) {
        
     })->create();

@@ -11,5 +11,5 @@ class CandidateResume extends Model
     public function candidateable()
     {
         return $this->morphTo();
-    }
+    } // polymorphic one to one and one to many relationship
 }
