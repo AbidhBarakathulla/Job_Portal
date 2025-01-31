@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Candidate;
 use App\Models\Employee;
 use App\Models\JobApplication;
+use App\Models\JobList;
 use Illuminate\Http\Request;
 
 class CandidateController extends Controller
@@ -46,5 +47,35 @@ class CandidateController extends Controller
         $candidates = Candidate::with('resumes')->get();
         return view('polymorphic_onetomany', compact('candidates'));
     } //controller function for polymorphic one to many relationship
+
+
+    // public function insert(Request $request)
+    // {
+    //     $request->validate([
+    //         'title' => 'required',
+    //         'description' => 'required',
+    //         'location' => 'required',
+    //         'salary' => 'required',
+    //         'image' => 'required',
+    //         'company_name' => 'required',
+         
+    //     ]);
+    //     $register=new JobList();
+    //     $register->title = $request->title;
+    //     $register->description = $request->description;
+    //     $register->location =  $request->location;
+    //     $register->salary =  $request->salary;
+    //     $register->company_name =  $request->company_name;
+    //     if ($request->hasFile('image')) {
+    //         $imageName = time() . '.' . $request->image->extension();
+    //         $request->image->move(public_path('Assets'), $imageName);
+    //         $register->image = 'Assets/'.$imageName;
+    //         }
+         
+     
+    //     $register->save();
+    
+    //     return redirect()->route('/onetoone',compact('register'));
+    // }
 
 }

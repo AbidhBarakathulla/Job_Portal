@@ -1,8 +1,12 @@
 <?php
 
+
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+
+
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -17,9 +21,14 @@ return Application::configure(basePath: dirname(__DIR__))
             $middleware->validateCsrfTokens(
                 except: ['stripe/*', 'login']
                 ); // validate login form with csrf token
+           
     }) 
+    ->withSchedule(function(Schedule $schedule){
+        $schedule->command('app:display-table')->everyFiveSeconds();
+    })
+
     ->withExceptions(function (Exceptions $exceptions) {
        
     })->create();
         // other middleware...
-       
+   

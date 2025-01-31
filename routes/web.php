@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\CandidateController;
 use App\Models\Candidate;
 use Illuminate\Support\Facades\Route;
@@ -25,10 +26,24 @@ Route::get('/checkage/{age}', function ($age) {
 
 
 Route::prefix('admin')->group(function () {
-    Route::any('/login', function () {
-        return view('login');
+    Route::any('/login1', function () {
+        return view('login1');
     });
 }); //route for login blade with prefix
+
+
+Route::controller(LoginRegisterController::class)->group(function() {
+    Route::any('/register', 'register')->name('register');
+    Route::any('/store', 'store')->name('store');
+    Route::get('/login', 'login')->name('login');
+    Route::post('/authenticate', 'authenticate')->name('authenticate');
+    Route::get('/home', 'home')->name('home');
+    Route::post('/logout', 'logout')->name('logout');
+}); // group routes for authentication
+
+Route::any('/createjob', function () {
+    return view('createjob');
+});
 
 // Route::group([], function()  
 // {  
