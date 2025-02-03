@@ -10,7 +10,7 @@
             <div class="card-body">
 
                 @if ($message = Session::get('success'))
-                    <div class="alert alert-danger text-center">
+                    <div class="alert alert-success text-center">
                         {{ $message }}
                     </div>     
                 @endif
@@ -26,7 +26,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="mb-3 row">
+                    <div class="mb-3 row">          
                         <label for="password" class="col-md-4 col-form-label text-md-end text-start">Password</label>
                         <div class="col-md-6">
                           <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
@@ -34,6 +34,8 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
+                        <a href="{{url('/forgetpassword')}}" style="margin-left: 360px;">Forget Password</a>
+
                     </div>
                     <div class="mb-3 row">
                         <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Login">

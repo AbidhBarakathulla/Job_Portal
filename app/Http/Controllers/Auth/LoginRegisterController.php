@@ -25,13 +25,13 @@ class LoginRegisterController extends Controller
             'password' => 'required|string|min:8|confirmed'
         ]);
 
-        $register=Candidate::create([
+        $register = Candidate::create([
             'username' => $request->username,
             'email' => $request->email,
             'password' => $request->password
         ]);
-        
-        return redirect()->route('home',compact('register'))
+
+        return redirect()->route('home')
             ->withSuccess('You have successfully registered & logged in!');
     }
 
@@ -47,10 +47,10 @@ class LoginRegisterController extends Controller
             'password' => 'required'
         ]);
         $credentials = $request->only('email', 'password');
-        $user=$request->email;
+        $user = $request->email;
 
         if ($credentials) {
-            return redirect()->route('home')->with('user', Auth::user()); ;
+            return redirect()->route('home')->with('user', Auth::user());;
         }
 
         return back()->withErrors([
@@ -70,5 +70,35 @@ class LoginRegisterController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('login')
             ->withSuccess('You have logged out successfully!');
+    }
+    public function forgetpasswordview()
+    {
+        return view('auth.forgetpassword');
+    }
+    public function forgetpassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:candidates,email'
+        ]);
+        return redirect()->route('changepassword');
+    }
+    public function changepasswordview()
+    {
+        return view('auth.changepassword');
+    }
+
+    public function changepassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|min:8|confirmed',
+            'password_confirmation' => 'required'
+        ]);
+        $candidate = Candidate::where('email', $request->email)->first();
+        if ($candidate) {
+            $candidate->password = $request->password;
+            $candidate->save();
+        }
+
+        return redirect()->route('login')->withSuccess('Your password has been updated successfully!');;
     }
 }

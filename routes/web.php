@@ -16,6 +16,7 @@ Route::get('/hasone',[CandidateController::class,'hasonethrough']); //route for 
 Route::get('/hasmany',[CandidateController::class,'hasmanythrough']); //route for hasmanythrough relationship
 Route::get('/polymorphic_one',[CandidateController::class,'polymorphic_one']); //route for polymorphic one to one relationship
 Route::get('/polymorphic_onetomany',[CandidateController::class,'polymorphic_onetomany']); //route for polymorphic one to many relationship
+Route::get('/joblist',[CandidateController::class,'showjoblists'])->name('joblist');
 
 Route::get('/profile', function () {return view('profile');}); //route for profile blade 
 Route::get('/profile1', function () {return view('profile1');}); //route for profile1 blade
@@ -39,11 +40,19 @@ Route::controller(LoginRegisterController::class)->group(function() {
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/home', 'home')->name('home');
     Route::post('/logout', 'logout')->name('logout');
+    Route::get('/forgetpassword', 'forgetpasswordview')->name('forget');
+    Route::post('/forgetpassword','forgetpassword')->name('forgetpassword');
+Route::get('/changepassword','changepasswordview')->name('changepassword');
+Route::post('/changepassword','changepassword')->name('changepassword.submit');
+
 }); // group routes for authentication
 
-Route::any('/createjob', function () {
-    return view('createjob');
-});
+
+
+Route::get('/createjob', [CandidateController::class, 'showcreatejob'])->name('jobregister');  // This displays the form (GET request)
+Route::post('/createjob', [CandidateController::class, 'store'])->name('jobregister.store');  // This stores the form data (POST request)
+
+
 
 // Route::group([], function()  
 // {  

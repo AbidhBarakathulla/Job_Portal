@@ -6,6 +6,7 @@ use App\Models\Candidate;
 use App\Models\Employee;
 use App\Models\JobApplication;
 use App\Models\JobList;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class CandidateController extends Controller
@@ -48,34 +49,41 @@ class CandidateController extends Controller
         return view('polymorphic_onetomany', compact('candidates'));
     } //controller function for polymorphic one to many relationship
 
+    public function showjoblists(){
+        $joblists=JobList::paginate(3);
+        return view('showjoblists',compact('joblists'));
+    }
 
-    // public function insert(Request $request)
-    // {
-    //     $request->validate([
-    //         'title' => 'required',
-    //         'description' => 'required',
-    //         'location' => 'required',
-    //         'salary' => 'required',
-    //         'image' => 'required',
-    //         'company_name' => 'required',
-         
-    //     ]);
-    //     $register=new JobList();
-    //     $register->title = $request->title;
-    //     $register->description = $request->description;
-    //     $register->location =  $request->location;
-    //     $register->salary =  $request->salary;
-    //     $register->company_name =  $request->company_name;
-    //     if ($request->hasFile('image')) {
-    //         $imageName = time() . '.' . $request->image->extension();
-    //         $request->image->move(public_path('Assets'), $imageName);
-    //         $register->image = 'Assets/'.$imageName;
-    //         }
+    public function showcreatejob(){
+        return view('createjob');
+    }
+
+    
+        public function store(Request $request)
+        {
+            $request->validate([
+                'title' => 'required',
+                'description' => 'required',
+                'location' => 'required',
+                'salary' => 'required|numeric',
+                'image' => 'required|image',
+                'company_name' => 'required'
+            ]);
+        $register=new JobList();
+        $register->title = $request->title;
+        $register->description = $request->description;
+        $register->location =  $request->location;
+        $register->salary =  $request->salary;
+        $register->company_name =  $request->company_name;
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('Assets'), $imageName);
+        $register->image = 'Assets/'.$imageName;
+            
          
      
-    //     $register->save();
+        $register->save();
     
-    //     return redirect()->route('/onetoone',compact('register'));
-    // }
+        return redirect()->route('joblist');
+        }
 
 }
