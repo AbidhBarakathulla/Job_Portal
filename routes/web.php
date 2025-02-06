@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginRegisterController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\CandidateController;
 use App\Models\Candidate;
 use Illuminate\Support\Facades\Route;
@@ -53,7 +54,7 @@ Route::get('/createjob', [CandidateController::class, 'showcreatejob'])->name('j
 Route::post('/createjob', [CandidateController::class, 'store'])->name('jobregister.store');  // This stores the form data (POST request)
 
 
-
+Route::get('/books', [BookController::class, 'index']);
 // Route::group([], function()  
 // {  
 //    Route::get('/first',function()  
