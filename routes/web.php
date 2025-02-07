@@ -18,7 +18,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/auth/redirect/linkedin',[LinkedInController::class,'redirect'])->name('linkedin');
-Route::get('/auth/linkedin-openid/callback',[LinkedInController::class,'callback']);
+Route::get('/auth/redirect/linkedin', [LinkedInController::class, 'redirect'])->name('linkedin.redirect');
+
+// Route to handle LinkedIn callback after authentication
+Route::get('/auth/linkedin-openid/callback', [LinkedInController::class, 'callback'])->name('linkedin.callback');
+
+// Route to trigger posting on LinkedIn
+Route::post('/linkedin/post', [LinkedInController::class, 'postToLinkedIn'])->name('linkedin.post');
+
 
 require __DIR__.'/auth.php';

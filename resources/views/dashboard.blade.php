@@ -4,21 +4,27 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-
-
-            </div>
-        </div>
+    <br>
+    @if(session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
     </div>
-    <form action="" method="POST" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-    @csrf
-    <textarea name="post_text" rows="4" cols="50" placeholder="What's on your mind?"  class="bg-white overflow-hidden shadow-sm sm:rounded-lg"></textarea>
-    <button type="submit" class="font-semibold text-xl text-gray-800 leading-tight">Post to LinkedIn</button>
-</form>
+    @endif
+
+    @if(session('error'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('error') }}
+    </div>
+    @endif
+
+    <br><br><br>
+
+
+    <form action="{{ route('linkedin.post') }}" method="POST" class="form container" enctype="multipart/form-data">
+        @csrf
+        <textarea name="postinput" class="form-control" placeholder="Type Some text for post"></textarea><br>
+        <button type="submit" class="btn btn-primary">Post on LinkedIn</button>
+    </form>
+
+
 </x-app-layout>
